@@ -1,0 +1,55 @@
+{
+  "SignIn": {
+    "title": "LOGIN",
+    "placeholder": {
+      "email": "Digite o seu e-mail",
+      "password": "Digite a sua senha"
+    },
+    "fields": {
+      "email": "E-mail",
+      "password": "Senha"
+    },
+    "forgotPassword": "Não sei minha senha",
+    "signup": "Não possui uma conta?",
+    "button": {
+      "next": "Próximo",
+      "signUp": "Criar minha conta aca.so"
+    }
+  },
+
+  "RecoverPassword": {
+    "title": "RECUPERAR SENHA",
+    "textInfo": "Informe seu e-mail para receber um código de verificação necessário para a troca de senha",
+    "textInfoCode": "Um código de verificação foi enviado para ${exemplo@gmail.com}, insira nos campos abaixo:",
+    "button": {
+      "sendCode": "Enviar código",
+      "back": "Voltar ao login",
+      "confirmCode": "Confirmar código",
+      "editEmail": "Editar e-mail"
+    },
+    "placeholder": {
+      "email": "Digite o seu e-mail"
+    },
+    "fields": {
+      "email": "E-mail",
+      "verificationCode": "Código de verificação"
+    }
+  },
+
+  "NewPassword": {
+    "title": "CRIAR SENHA",
+    "button": {
+      "confirm": "Confirmar",
+      "back": "Voltar ao login"
+    },
+    "placeholder": {
+      "newPassword": "Nova senha",
+      "confirmNewPassword": "Confirme sua nova senha"
+    }
+  },
+  "Home": {
+    "welcome": "Bem vindo",
+    "signOut": "Sair do aca.so"
+  }
+
+}

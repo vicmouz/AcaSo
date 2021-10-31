@@ -1,0 +1,55 @@
+{
+  "SignIn": {
+    "title": "LOGIN",
+    "placeholder": {
+      "email": "Enter your email",
+      "password": "Enter your password"
+    },
+    "fields": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "forgotPassword": "I don't know my password",
+    "signup": "Don't have an account?",
+    "button": {
+      "next": "Next",
+      "signUp": "Create my account now"
+    }
+  },
+
+  "RecoverPassword": {
+    "title": "RECOVER PASSWORD",
+    "textInfo": "Enter your e-mail to receive a verification code required for password change",
+    "textInfoCode": "A verification code has been sent to ${example@gmail.com}, enter in the fields below:",
+    "button": {
+      "sendCode": "Send code",
+      "back": "Back to login",
+      "confirmCode": "Confirm code",
+      "editEmail": "Edit email"
+    },
+    "placeholder": {
+      "email": "Enter your email"
+    },
+    "fields": {
+      "email": "Email",
+      "verificationCode": "Verification code"
+    }
+  },
+
+  "NewPassword": {
+    "title": "CREATE PASSWORD",
+    "button": {
+      "confirm": "Confirm",
+      "back": "Back to login"
+    },
+    "placeholder": {
+      "newPassword": "New password",
+      "confirmNewPassword": "Confirm your new password"
+    }
+  },
+  "Home": {
+    "welcome": "Welcome",
+    "signOut": "Logout aca.so"
+  }
+
+}
