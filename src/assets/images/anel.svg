@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1018.981" height="784.645" viewBox="0 0 1018.981 784.645">
+  <defs>
+    <filter id="Anel" x="0" y="0" width="1018.981" height="784.645" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-color="#e93f78"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Anel)">
+    <g id="Anel-2" data-name="Anel" transform="matrix(0.95, 0.31, -0.31, 0.95, 182.48, 34.76)" fill="none" stroke="#e93f78" stroke-width="3">
+      <ellipse cx="421.5" cy="239.006" rx="421.5" ry="239.006" stroke="none"/>
+      <ellipse cx="421.5" cy="239.006" rx="420" ry="237.506" fill="none"/>
+    </g>
+  </g>
+</svg>

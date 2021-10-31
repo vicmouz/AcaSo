@@ -44,11 +44,18 @@ export const TitlePage = styled.Text`
 `;
 
 export const TextRegister = styled.Text`
+  margin-top: ${responsiveSize(99)}px;
   color: ${colors.light};
   font-size: ${responsiveSize(16)}px;
 `;
 
 export const ButtonRegister = styled(Button)`
-  background: transparent linear-gradient(90deg, #ffffff 0%, #ffffffcc 100%) 0%
-    0% no-repeat padding-box;
+  margin-top: ${responsiveSize(24)}px;
+  margin-bottom: ${responsiveSize(54)}px;
+  background: ${colors.light};
+`;
+
+export const Wrap = styled.ScrollView`
+  flex: 1;
+  background: ${colors.primary};
 `;

@@ -11,7 +11,7 @@ export const Container = styled.TouchableOpacity`
   justify-content: center;
 `;
 
-export const Text = styled.Text`
+export const TextButton = styled.Text`
   color: ${colors.button.text};
   font-size: ${responsiveSize(18)}px;
 `;

@@ -11,5 +11,6 @@ export const IconLogo = styled(IconCustom).attrs({
   color: colors.light,
 })`
   align-self: center;
+  margin-top: ${responsiveSize(131)}px;
   margin-bottom: ${responsiveSize(27)}px;
 `;
