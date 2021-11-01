@@ -1,9 +1,7 @@
 import React, {useRef, useState} from 'react';
 import {TouchableWithoutFeedback, Keyboard, Linking} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import LogoImg from '~/components/LogoImg';
-
-import {signInRequest} from '~/store/modules/auth/actions';
 import gas from '~/assets/images/gas.png';
 
 import {
@@ -15,34 +13,37 @@ import {
   RingContainer,
   RingImg,
   SubmitButton,
+  TextInfo,
   TextRecover,
-  TextRegister,
   TitlePage,
   Wrap,
 } from './styles';
-import NavigationService from '~/routes/navigation.service';
+import {useFormik} from 'formik';
+import api from '~/services/api';
+import formValidator from './formValidator';
 
-export default function SignIn({navigation}) {
-  const dispatch = useDispatch();
+export default function RecoverPassword({navigation}) {
   const passwordRef = useRef();
 
   const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
 
   const loading = useSelector(state => state.auth.loading);
 
-  function handleSubmit() {
-    dispatch(signInRequest(userName, password));
-  }
+  function handleSubmit() {}
 
   function openRegister() {
     Linking.openURL('https://app.aca.so/cadastro');
   }
 
-  function handleNavigate(page, params) {
-    NavigationService.navigate(page, params);
-  }
-
+  const formik = useFormik({
+    initialValues: {email: ''},
+    validationSchema: formValidator,
+    onSubmit: async values => {
+      const {data} = await api.post('/auth/forgot-password', {
+        email: values.email,
+      });
+    },
+  });
   return (
     <Wrap>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -52,7 +53,11 @@ export default function SignIn({navigation}) {
               <RingImg />
             </RingContainer>
             <LogoImg />
-            <TitlePage>LOGIN</TitlePage>
+            <TitlePage>RECUPERAR SENHA</TitlePage>
+            <TextInfo>
+              Informe seu e-mail para receber um código de verificação
+              necessário para a troca de senha
+            </TextInfo>
             <Form>
               <FormInput
                 label="E-mail"
@@ -63,30 +68,25 @@ export default function SignIn({navigation}) {
                 placeholder="Digite o seu e-mail"
                 returnKeyType="next"
                 onSubmitEditing={() => passwordRef.current.focus()}
-                value={userName}
-                onChangeText={setUserName}
-              />
-              <FormInput
-                label="Senha"
-                icon="lock-outline"
-                secureTextEntry
-                placeholder="Digite a sua senha"
-                ref={passwordRef}
-                returnKeyType="send"
-                onSubmitEditing={handleSubmit}
-                value={password}
-                onChangeText={setPassword}
+                value={formik.values.email}
+                onChangeText={formik.handleChange('email')}
+                errors={formik.errors.email}
+                error={
+                  !!formik.errors.email &&
+                  !formik.values.email &&
+                  formik.touched.email
+                }
+                errorText={formik.errors.email}
               />
             </Form>
-            <TextRecover onPress={() => handleNavigate('RecoverPassword')}>
-              Não sei minha senha
-            </TextRecover>
-            <SubmitButton loading={loading} onPress={handleSubmit} isSubmit>
-              Próximo
+            <SubmitButton
+              loading={loading}
+              onPress={() => formik.handleSubmit()}
+              isSubmit>
+              Enviar código
             </SubmitButton>
-            <TextRegister>Não possui uma conta?</TextRegister>
             <ButtonRegister onPress={openRegister}>
-              Criar minha conta aca.so
+              Voltar ao login
             </ButtonRegister>
           </Container>
         </BackgroundImg>

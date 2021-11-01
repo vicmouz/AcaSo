@@ -9,6 +9,15 @@ import {responsiveSize} from '~/styles/themes/responsive';
 import IconCustom from '~/components/IconCustom';
 import ring from '~/assets/images/anel.svg';
 
+export const TextInfo = styled.Text`
+  font: normal normal 300 18px/30px Raleway;
+  text-align: center;
+  letter-spacing: 0.58px;
+  color: ${colors.light};
+  letter-spacing: 0.58px;
+  width: ${responsiveSize(360)}px;
+`;
+
 export const Container = styled.KeyboardAvoidingView.attrs({
   enabled: Platform.OS === 'ios',
   behavior: 'padding',
@@ -29,7 +38,7 @@ export const FormInput = styled(Input)`
 `;
 
 export const SubmitButton = styled(Button)`
-  background: ${colors.light};
+  opacity: 1;
 `;
 
 export const TextRecover = styled.Text`
@@ -40,9 +49,10 @@ export const TextRecover = styled.Text`
 `;
 
 export const TitlePage = styled.Text`
+  font: normal normal 500 26px/42px Raleway;
   color: ${colors.light};
-  font-size: ${responsiveSize(26)}px;
-  letter-spacing: ${responsiveSize(7)}px;
+  text-align: center;
+  letter-spacing: ${responsiveSize(7.8)}px;
   margin-bottom: ${responsiveSize(30)}px;
 `;
 
@@ -55,7 +65,7 @@ export const TextRegister = styled.Text`
 export const ButtonRegister = styled(Button)`
   margin-top: ${responsiveSize(24)}px;
   margin-bottom: ${responsiveSize(54)}px;
-  background: ${colors.light};
+  color: ${colors.light};
 `;
 
 export const Wrap = styled.ScrollView`
