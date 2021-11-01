@@ -17,7 +17,7 @@ export const Container = styled.View`
 `;
 
 export const TextHome = styled.Text`
-  font: normal normal normal ${responsiveSize(20)}px / ${responsiveSize(24)}px
+  font: normal normal normal ${responsiveSize(17)}px / ${responsiveSize(21)}px
     Raleway;
   margin-top: ${responsiveSize(77)}px;
   text-align: left;
@@ -27,9 +27,9 @@ export const TextHome = styled.Text`
 export const UserName = styled.Text`
   padding-left: 10%;
   color: ${colors.light};
-  font: normal normal bold ${responsiveSize(30)}px / ${responsiveSize(35)}px
+  font: normal normal bold ${responsiveSize(27)}px / ${responsiveSize(32)}px
     Raleway;
-  margin-bottom: ${responsiveSize(69)}px;
+  margin-bottom: ${responsiveSize(48)}px;
 `;
 
 export const TextLogout = styled.Text`
@@ -45,7 +45,7 @@ export const TextBio = styled.Text`
   width: 80%;
   color: ${colors.light};
   margin-bottom: ${responsiveSize(107)}px;
-  margin-top: ${responsiveSize(97)}px;
+  margin-top: ${responsiveSize(89)}px;
   font: normal normal normal ${responsiveSize(18)}px / ${responsiveSize(26)}px
     Raleway;
   text-align: center;

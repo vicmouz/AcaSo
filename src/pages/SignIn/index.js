@@ -21,19 +21,23 @@ import {
   Wrap,
 } from './styles';
 import NavigationService from '~/routes/navigation.service';
+import {useFormik} from 'formik';
+import formValidator from './formValidator';
 
 export default function SignIn({navigation}) {
   const dispatch = useDispatch();
   const passwordRef = useRef();
-
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
+  const wrongPass = useSelector(state => state.auth.wrongPass);
+  const formik = useFormik({
+    initialValues: {email: '', password: ''},
+    validationSchema: formValidator,
+    onSubmit: async values => {
+      const response = dispatch(signInRequest(values.email, values.password));
+      console.log(response.data.message);
+    },
+  });
 
   const loading = useSelector(state => state.auth.loading);
-
-  function handleSubmit() {
-    dispatch(signInRequest(userName, password));
-  }
 
   function openRegister() {
     Linking.openURL('https://app.aca.so/cadastro');
@@ -62,24 +66,35 @@ export default function SignIn({navigation}) {
                 placeholder="Digite o seu e-mail"
                 returnKeyType="next"
                 onSubmitEditing={() => passwordRef.current.focus()}
-                value={userName}
-                onChangeText={setUserName}
+                value={formik.values.email}
+                onChangeText={formik.handleChange('email')}
+                errors={formik.errors.email}
+                error={!!formik.errors.email && formik.touched.email}
+                errorText={formik.errors.email}
               />
               <FormInput
                 label="Senha"
+                iconVisible
                 secureTextEntry
                 placeholder="Digite a sua senha"
                 ref={passwordRef}
                 returnKeyType="send"
-                onSubmitEditing={handleSubmit}
-                value={password}
-                onChangeText={setPassword}
+                onSubmitEditing={formik.handleSubmit}
+                value={formik.values.password}
+                onChangeText={formik.handleChange('password')}
+                errors={formik.errors.password}
+                error={!!formik.errors.password && formik.touched.password}
+                errorText={formik.errors.password}
+                wrongPass={wrongPass}
               />
             </Form>
             <TextRecover onPress={() => handleNavigate('RecoverPassword')}>
               Não sei minha senha
             </TextRecover>
-            <SubmitButton loading={loading} onPress={handleSubmit} isSubmit>
+            <SubmitButton
+              loading={loading}
+              onPress={formik.handleSubmit}
+              isSubmit>
               Próximo
             </SubmitButton>
             <TextRegister>Não possui uma conta?</TextRegister>

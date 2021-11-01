@@ -32,10 +32,11 @@ export const TextButtonSubmit = styled.Text`
 `;
 
 export const TextButton = styled.Text`
-  color: ${colors.light};
+  color: #ffffff;
   text-align: center;
   font: normal normal bold 16px/19px Raleway;
   opacity: 1;
+  background: transparent;
 `;
 
 export const ArrowIcon = styled(IconCustom).attrs({

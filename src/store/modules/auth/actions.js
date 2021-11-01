@@ -24,3 +24,13 @@ export function signOut() {
     type: '@auth/SIGN_OUT',
   };
 }
+export function wrongPass() {
+  return {
+    type: '@auth/WRONG_PASS',
+  };
+}
+export function correctPass() {
+  return {
+    type: '@auth/CORRECT_PASS',
+  };
+}

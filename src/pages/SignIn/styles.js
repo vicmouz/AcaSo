@@ -27,11 +27,11 @@ export const Form = styled.View`
   align-self: stretch;
 `;
 export const FormInput = styled(Input)`
-  margin-bottom: ${responsiveSize(31)}px;
+  margin-bottom: ${responsiveSize(20)}px;
 `;
 
 export const SubmitButton = styled(Button)`
-  background: ${colors.light};
+  /* background: ${colors.light}; */
 `;
 
 export const TextRecover = styled.Text`

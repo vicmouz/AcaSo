@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {useDispatch} from 'react-redux';
 import LogoImg from '~/components/LogoImg';
@@ -19,15 +19,23 @@ import {
 
 import {useFormik} from 'formik';
 import api from '~/services/api';
+import ModalCustom from '~/components/ModalCustom';
 
 export default function NewPassword({navigation}) {
   const passwordRef = useRef();
   const password2Ref = useRef();
   const [loading, setLoading] = useState(false);
+  const [modalConfirmationError, setModalConfirmationError] = useState(false);
 
-  function handleSubmit() {
-    // dispatch(signInRequest(userName, password));
-  }
+  const newCode = useCallback(
+    async email => {
+      await api.post('/auth/forgot-password', {
+        email: email,
+      });
+      navigation.navigate('ConfirmCode', {email: email});
+    },
+    [navigation],
+  );
 
   const formik = useFormik({
     initialValues: {password: '', confirmPassword: ''},
@@ -41,13 +49,28 @@ export default function NewPassword({navigation}) {
         });
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        setLoading(false);
+
+        if (String(error.response.data.message).includes('confirmation')) {
+          setModalConfirmationError(true);
+        }
       }
     },
   });
 
   return (
     <Wrap>
+      <ModalCustom
+        show={modalConfirmationError}
+        setShow={setModalConfirmationError}
+        titleText="Código inválido"
+        infoText="Um novo código foi enviado para o seu e-mail"
+        textErrorButtom="Certo"
+        onAction={() => {
+          setModalConfirmationError(false);
+          newCode(navigation.getParam('email'));
+        }}
+      />
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <BackgroundImg source={gas}>
           <Container>
@@ -59,6 +82,7 @@ export default function NewPassword({navigation}) {
             <Form>
               <FormInput
                 label="Nova Senha"
+                iconVisible
                 secureTextEntry
                 placeholder="Digite a sua nova senha"
                 ref={passwordRef}
@@ -69,11 +93,12 @@ export default function NewPassword({navigation}) {
               />
               <FormInput
                 label="Confirme sua nova senha"
+                iconVisible
                 secureTextEntry
                 placeholder="Confirme a sua nova senha"
                 ref={password2Ref}
                 returnKeyType="send"
-                onSubmitEditing={handleSubmit}
+                onSubmitEditing={formik.handleSubmit}
                 value={formik.values.confirmPassword}
                 onChangeText={formik.handleChange('confirmPassword')}
               />

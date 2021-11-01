@@ -25,6 +25,7 @@ export default function ModalCustom({
   children,
   onAction,
   onAction2,
+  twoButtons,
   textErrorButtom,
   textSucessButtom,
 }) {
@@ -44,12 +45,22 @@ export default function ModalCustom({
                     <TextInfo>{infoText}</TextInfo>
 
                     <ViewButtons>
-                      <ButtonError onPress={onAction2}>
-                        <TextButtonClose>{textErrorButtom}</TextButtonClose>
-                      </ButtonError>
-                      <ButtonSucess onPress={onAction}>
-                        <TextButtonClose>{textSucessButtom}</TextButtonClose>
-                      </ButtonSucess>
+                      {twoButtons ? (
+                        <>
+                          <ButtonError onPress={onAction2}>
+                            <TextButtonClose>{textErrorButtom}</TextButtonClose>
+                          </ButtonError>
+                          <ButtonSucess onPress={onAction}>
+                            <TextButtonClose>
+                              {textSucessButtom}
+                            </TextButtonClose>
+                          </ButtonSucess>
+                        </>
+                      ) : (
+                        <ButtonError onPress={onAction}>
+                          <TextButtonClose>{textErrorButtom}</TextButtonClose>
+                        </ButtonError>
+                      )}
                     </ViewButtons>
                   </Card>
                 </TouchableWithoutFeedback>

@@ -66,11 +66,7 @@ export default function RecoverPassword({navigation}) {
                 value={formik.values.email}
                 onChangeText={formik.handleChange('email')}
                 errors={formik.errors.email}
-                error={
-                  !!formik.errors.email &&
-                  !formik.values.email &&
-                  formik.touched.email
-                }
+                error={!!formik.errors.email && formik.touched.email}
                 errorText={formik.errors.email}
               />
             </Form>

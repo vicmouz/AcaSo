@@ -3,7 +3,7 @@ import {takeLatest, call, put, all} from 'redux-saga/effects';
 
 import api from '~/services/api';
 
-import {signInSuccess, signFailure} from './actions';
+import {signInSuccess, signFailure, wrongPass} from './actions';
 
 export function* signIn({payload}) {
   try {
@@ -18,12 +18,13 @@ export function* signIn({payload}) {
     const user_id = response.data.user.id;
 
     api.defaults.headers.Authorization = `Bearer ${tokenAccess}`;
-    console.log(user_id);
+
+    yield put(wrongPass());
     yield put(signInSuccess(tokenAccess, user_id));
   } catch (error) {
-    console.log(error);
-    Alert.alert('Falha na autenticação', 'usuário ou senha inválido');
-
+    if (String(error.response.data.message).includes('incorrect')) {
+      yield put(wrongPass());
+    }
     yield put(signFailure());
   }
 }
