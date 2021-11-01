@@ -6,7 +6,6 @@ export function signInRequest(username, password) {
 }
 
 export function signInSuccess(token, id) {
-  console.log(id);
   return {
     type: '@auth/SIGN_IN_SUCCESS',
     payload: {token, id},

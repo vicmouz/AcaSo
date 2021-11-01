@@ -35,9 +35,7 @@ export default function RecoverPassword({navigation}) {
         });
         setLoading(false);
         navigation.navigate('ConfirmCode', {email: values.email});
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     },
   });
   return (

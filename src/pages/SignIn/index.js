@@ -32,8 +32,7 @@ export default function SignIn({navigation}) {
     initialValues: {email: '', password: ''},
     validationSchema: formValidator,
     onSubmit: async values => {
-      const response = dispatch(signInRequest(values.email, values.password));
-      console.log(response.data.message);
+      dispatch(signInRequest(values.email, values.password));
     },
   });
 

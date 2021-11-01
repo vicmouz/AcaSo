@@ -13,7 +13,6 @@ export function* signIn({payload}) {
       password,
     });
 
-    console.log(response.data);
     const tokenAccess = response.data.token.id_token;
     const user_id = response.data.user.id;
 
