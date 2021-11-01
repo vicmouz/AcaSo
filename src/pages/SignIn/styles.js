@@ -12,13 +12,15 @@ import ring from '~/assets/images/anel.svg';
 export const Container = styled.KeyboardAvoidingView.attrs({
   enabled: Platform.OS === 'ios',
   behavior: 'padding',
+  elevation: 2,
+  zIndex: 2,
 })`
   flex: 1;
   justify-content: center;
   align-items: center;
   padding: 0 38px;
   margin-top: ${responsiveSize(-35)}px;
-  background: ${colors.primary};
+  background: transparent;
 `;
 
 export const Form = styled.View`
@@ -55,7 +57,6 @@ export const TextRegister = styled.Text`
 export const ButtonRegister = styled(Button)`
   margin-top: ${responsiveSize(24)}px;
   margin-bottom: ${responsiveSize(54)}px;
-  background: ${colors.light};
 `;
 
 export const Wrap = styled.ScrollView`

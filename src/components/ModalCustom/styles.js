@@ -2,8 +2,6 @@ import styled from 'styled-components/native';
 import {Dimensions} from 'react-native';
 import {colors} from '~/styles/themes';
 import {responsiveSize} from '~/styles/themes/responsive';
-import logoModal from '~/assets/icons/logoModal.svg';
-import IconCustom from '~/components/IconCustom';
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 export const Container = styled.View`

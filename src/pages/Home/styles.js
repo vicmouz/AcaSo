@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
+import IconCustom from '~/components/IconCustom';
 import {colors} from '~/styles/themes';
 import {responsiveSize} from '~/styles/themes/responsive';
+import ring from '~/assets/images/anel.svg';
 
 export const Wrap = styled.ScrollView`
   flex: 1;
@@ -43,8 +45,24 @@ export const TextBio = styled.Text`
   width: 80%;
   color: ${colors.light};
   margin-bottom: ${responsiveSize(107)}px;
-  margin-top: ${responsiveSize(127)}px;
+  margin-top: ${responsiveSize(97)}px;
   font: normal normal normal ${responsiveSize(18)}px / ${responsiveSize(26)}px
     Raleway;
   text-align: center;
+`;
+
+export const RingContainer = styled.View.attrs({elevation: 3})`
+  position: absolute;
+  flex: 1;
+  left: ${responsiveSize(-361)}px;
+  top: ${responsiveSize(-127)}px;
+`;
+
+export const RingImg = styled(IconCustom).attrs({
+  xml: ring,
+  width: responsiveSize(949),
+  height: responsiveSize(715),
+  color: colors.light,
+})`
+  align-self: center;
 `;

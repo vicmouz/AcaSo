@@ -21,6 +21,8 @@ export const TextInfo = styled.Text`
 export const Container = styled.KeyboardAvoidingView.attrs({
   enabled: Platform.OS === 'ios',
   behavior: 'padding',
+  elevation: 2,
+  zIndex: 2,
 })`
   flex: 1;
   justify-content: center;

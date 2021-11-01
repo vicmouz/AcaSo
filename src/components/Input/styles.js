@@ -4,11 +4,20 @@ import {colors} from '~/styles/themes';
 import {responsiveSize} from '~/styles/themes/responsive';
 
 export const Container = styled.View`
-  height: ${responsiveSize(44)}px;
+  height: ${props => (props.size ? responsiveSize(38) : responsiveSize(44))};
   background: ${colors.input.background};
   border-radius: 10px;
   flex-direction: row;
   align-items: center;
+  width: ${props => (props.size ? responsiveSize(props.size) : '100%')};
+`;
+
+export const ContainerError = styled.View.attrs({elevation: 2})`
+  width: ${responsiveSize(9)};
+  height: ${props => (props.size ? responsiveSize(38) : responsiveSize(44))};
+  background: ${colors.error};
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 `;
 
 export const TInput = styled.TextInput.attrs({

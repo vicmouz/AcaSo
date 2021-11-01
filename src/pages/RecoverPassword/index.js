@@ -1,6 +1,6 @@
-import React, {useRef, useState} from 'react';
-import {TouchableWithoutFeedback, Keyboard, Linking} from 'react-native';
-import {useSelector} from 'react-redux';
+import React, {useState} from 'react';
+import {TouchableWithoutFeedback, Keyboard} from 'react-native';
+
 import LogoImg from '~/components/LogoImg';
 import gas from '~/assets/images/gas.png';
 
@@ -14,7 +14,6 @@ import {
   RingImg,
   SubmitButton,
   TextInfo,
-  TextRecover,
   TitlePage,
   Wrap,
 } from './styles';
@@ -23,25 +22,22 @@ import api from '~/services/api';
 import formValidator from './formValidator';
 
 export default function RecoverPassword({navigation}) {
-  const passwordRef = useRef();
-
-  const [userName, setUserName] = useState('');
-
-  const loading = useSelector(state => state.auth.loading);
-
-  function handleSubmit() {}
-
-  function openRegister() {
-    Linking.openURL('https://app.aca.so/cadastro');
-  }
+  const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {email: ''},
     validationSchema: formValidator,
     onSubmit: async values => {
-      const {data} = await api.post('/auth/forgot-password', {
-        email: values.email,
-      });
+      try {
+        setLoading(true);
+        await api.post('/auth/forgot-password', {
+          email: values.email,
+        });
+        setLoading(false);
+        navigation.navigate('ConfirmCode', {email: values.email});
+      } catch (error) {
+        console.log(error);
+      }
     },
   });
   return (
@@ -61,13 +57,12 @@ export default function RecoverPassword({navigation}) {
             <Form>
               <FormInput
                 label="E-mail"
-                icon="mail-outline"
                 keyboardType="default"
                 autoCorrect={false}
                 autoCapitalize="none"
                 placeholder="Digite o seu e-mail"
-                returnKeyType="next"
-                onSubmitEditing={() => passwordRef.current.focus()}
+                returnKeyType="send"
+                onSubmitEditing={formik.handleSubmit}
                 value={formik.values.email}
                 onChangeText={formik.handleChange('email')}
                 errors={formik.errors.email}
@@ -81,11 +76,11 @@ export default function RecoverPassword({navigation}) {
             </Form>
             <SubmitButton
               loading={loading}
-              onPress={() => formik.handleSubmit()}
+              onPress={formik.handleSubmit}
               isSubmit>
               Enviar código
             </SubmitButton>
-            <ButtonRegister onPress={openRegister}>
+            <ButtonRegister onPress={() => navigation.navigate('Sign')}>
               Voltar ao login
             </ButtonRegister>
           </Container>

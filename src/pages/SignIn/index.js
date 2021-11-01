@@ -56,7 +56,6 @@ export default function SignIn({navigation}) {
             <Form>
               <FormInput
                 label="E-mail"
-                icon="mail-outline"
                 keyboardType="default"
                 autoCorrect={false}
                 autoCapitalize="none"
@@ -68,7 +67,6 @@ export default function SignIn({navigation}) {
               />
               <FormInput
                 label="Senha"
-                icon="lock-outline"
                 secureTextEntry
                 placeholder="Digite a sua senha"
                 ref={passwordRef}

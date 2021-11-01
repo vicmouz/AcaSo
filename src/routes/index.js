@@ -4,6 +4,8 @@ import {createStackNavigator} from 'react-navigation-stack';
 import SignIn from '~/pages/SignIn';
 import Home from '~/pages/Home';
 import RecoverPassword from '~/pages/RecoverPassword';
+import ConfirmCode from '~/pages/ConfirmCode';
+import NewPassword from '~/pages/NewPassword';
 
 export default (isSigned = false) =>
   createAppContainer(
@@ -19,10 +21,12 @@ export default (isSigned = false) =>
         ),
         App: Home,
         RecoverPassword,
+        ConfirmCode,
+        NewPassword,
       },
       {
         headerMode: 'none',
-        initialRouteName: isSigned ? 'App' : 'RecoverPassword',
+        initialRouteName: isSigned ? 'App' : 'Sign',
       },
     ),
   );

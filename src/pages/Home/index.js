@@ -6,6 +6,8 @@ import ring from '~/assets/images/anel.png';
 
 import {
   Container,
+  RingContainer,
+  RingImg,
   TextBio,
   TextHome,
   TextLogout,
@@ -66,6 +68,9 @@ export default function Home({navigation}) {
         textSucessButtom="Não"
         onAction={() => setModalExit(false)}
       />
+      <RingContainer>
+        <RingImg />
+      </RingContainer>
       <TextHome>bem vindo,</TextHome>
       <UserName>{username}</UserName>
       <Container>

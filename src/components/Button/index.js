@@ -16,7 +16,15 @@ export default function Button({children, loading, isSubmit, ...rest}) {
   return (
     <Container {...rest}>
       {loading ? (
-        <ActivityIndicator size="small" color="#200246" />
+        <Gradient
+          isSubmit
+          tart={{x: 0, y: 0}}
+          end={{x: 1, y: 0}}
+          colors={['#FFFC', '#FFF']}>
+          <Wrap>
+            <ActivityIndicator size="small" color="#200246" />
+          </Wrap>
+        </Gradient>
       ) : (
         <>
           {isSubmit ? (
