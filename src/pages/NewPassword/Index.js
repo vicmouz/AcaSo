@@ -90,6 +90,9 @@ export default function NewPassword({navigation}) {
                 onSubmitEditing={() => password2Ref.current.focus()}
                 value={formik.values.password}
                 onChangeText={formik.handleChange('password')}
+                errors={formik.errors.password}
+                error={!!formik.errors.password && formik.touched.password}
+                errorText={formik.errors.password}
               />
               <FormInput
                 label="Confirme sua nova senha"
@@ -101,6 +104,12 @@ export default function NewPassword({navigation}) {
                 onSubmitEditing={formik.handleSubmit}
                 value={formik.values.confirmPassword}
                 onChangeText={formik.handleChange('confirmPassword')}
+                errors={formik.errors.confirmPassword}
+                error={
+                  !!formik.errors.confirmPassword &&
+                  formik.touched.confirmPassword
+                }
+                errorText={formik.errors.confirmPassword}
               />
             </Form>
             <SubmitButton

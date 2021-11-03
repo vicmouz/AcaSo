@@ -1,4 +1,3 @@
-import {Alert} from 'react-native';
 import {takeLatest, call, put, all} from 'redux-saga/effects';
 
 import api from '~/services/api';
@@ -15,11 +14,11 @@ export function* signIn({payload}) {
 
     const tokenAccess = response.data.token.id_token;
     const user_id = response.data.user.id;
+    const refreshToken = response.data.token.refresh_token;
 
     api.defaults.headers.Authorization = `Bearer ${tokenAccess}`;
 
-    yield put(wrongPass());
-    yield put(signInSuccess(tokenAccess, user_id));
+    yield put(signInSuccess(tokenAccess, refreshToken, user_id));
   } catch (error) {
     if (String(error.response.data.message).includes('incorrect')) {
       yield put(wrongPass());

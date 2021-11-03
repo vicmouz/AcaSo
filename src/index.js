@@ -8,12 +8,13 @@ import './config/ReactotronConfig';
 import {store, persistor} from './store';
 
 import App from './App';
+import colors from './styles/themes/colors';
 
 export default function Index() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <StatusBar barStyle="light-content" backgroundColor="#200246" />
+        <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
         <App />
       </PersistGate>
     </Provider>

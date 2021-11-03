@@ -15,12 +15,11 @@ import {
   Wrap,
 } from './styles';
 
-import {signOut} from '~/store/modules/auth/actions';
+import {refreshUserToken, signOut} from '~/store/modules/auth/actions';
 import {useTranslation} from 'react-i18next';
 import api from '~/services/api';
 import UserImage from './UserImage';
 import ModalCustom from '~/components/ModalCustom';
-const image = {uri: 'https://reactjs.org/logo-og.png'};
 
 export default function Home({navigation}) {
   const dispatch = useDispatch();
@@ -30,23 +29,24 @@ export default function Home({navigation}) {
   const [username, setUsername] = useState(' ');
   const {t} = useTranslation('Home');
   const user_id = useSelector(state => state.auth.id);
-
-  function handleLogout() {
-    Alert.alert('Atenção !', 'Você deseja sair do App ?', [
-      {
-        text: 'Não',
-        style: 'cancel',
-      },
-      {text: 'Sim', onPress: () => dispatch(signOut())},
-    ]);
-  }
+  const refreshToken = useSelector(state => state.auth.refreshToken);
 
   const getInfo = useCallback(async () => {
-    const {data} = await api.get(`/user/${user_id}`);
-    setUrlPic(data.profile_picture);
-    setUsername(data.first_name + ' ' + data.last_name);
-    setBio(data.bio);
-  }, [user_id]);
+    try {
+      const {data} = await api.get(`/user/${user_id}`);
+      setUrlPic(data.profile_picture);
+      setUsername(data.first_name + ' ' + data.last_name);
+      setBio(data.bio);
+    } catch (error) {
+      if (error.response.status === 403) {
+        console.log('token expired');
+        const {data} = api.post('/auth/refresh-token', {
+          refresh_token: refreshToken,
+        });
+        console.log(data);
+      }
+    }
+  }, [refreshToken, user_id]);
 
   useEffect(() => {
     getInfo();
