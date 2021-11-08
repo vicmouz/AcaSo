@@ -11,6 +11,7 @@ import {
   TextButtonSubmit,
   Wrap,
 } from './styles';
+import colors from '~/styles/themes/colors';
 
 export default function Button({children, loading, isSubmit, ...rest}) {
   return (
@@ -20,9 +21,9 @@ export default function Button({children, loading, isSubmit, ...rest}) {
           isSubmit
           tart={{x: 0, y: 0}}
           end={{x: 1, y: 0}}
-          colors={['#FFFC', '#FFF']}>
+          colors={['#FFF', '#FFFC']}>
           <Wrap>
-            <ActivityIndicator size="small" color="#200246" />
+            <ActivityIndicator size="small" color={colors.primary} />
           </Wrap>
         </Gradient>
       ) : (
@@ -33,7 +34,7 @@ export default function Button({children, loading, isSubmit, ...rest}) {
                 isSubmit
                 tart={{x: 0, y: 0}}
                 end={{x: 1, y: 0}}
-                colors={['#FFFC', '#FFF']}>
+                colors={['#FFF', '#FFFC']}>
                 <Wrap>
                   <TextButtonSubmit>{children}</TextButtonSubmit>
                   <ArrowContainer>
@@ -46,7 +47,7 @@ export default function Button({children, loading, isSubmit, ...rest}) {
             <Gradient
               tart={{x: 0, y: 0}}
               end={{x: 1, y: 0}}
-              colors={['#FFFC', '#FFF']}>
+              colors={['#FFF', '#FFFC']}>
               <Wrap>
                 <TextButton>{children}</TextButton>
               </Wrap>

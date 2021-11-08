@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {refreshTokenSession} from '~/../util/refreshToken';
 
 const api = axios.create({
   baseURL: 'https://api.aca.so',
@@ -11,7 +12,7 @@ const api = axios.create({
 //   },
 //   error => {
 //     if (error.response.status === 403) {
-
+//       refreshTokenSession();
 //     }
 //     return error;
 //   },

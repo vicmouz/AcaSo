@@ -2,7 +2,6 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import ring from '~/assets/images/anel.png';
 
 import {
   Container,
@@ -25,6 +24,7 @@ export default function Home({navigation}) {
   const dispatch = useDispatch();
   const [bio, setBio] = useState('');
   const [urlPic, setUrlPic] = useState('');
+  const [timeLogout, setTimeLogout] = useState(5);
   const [modalExit, setModalExit] = useState(false);
   const [username, setUsername] = useState(' ');
   const {t} = useTranslation('Home');
@@ -39,18 +39,26 @@ export default function Home({navigation}) {
       setBio(data.bio);
     } catch (error) {
       if (error.response.status === 403) {
-        console.log('token expired');
-        const {data} = api.post('/auth/refresh-token', {
-          refresh_token: refreshToken,
-        });
-        console.log(data);
+        refresh();
       }
     }
-  }, [refreshToken, user_id]);
+  }, [refresh, user_id]);
 
+  const refresh = useCallback(async () => {
+    const {data} = await api.post('/auth/refresh-token', {
+      refresh_token: refreshToken,
+    });
+    api.defaults.headers.Authorization = `Bearer ${data.id_token}`;
+    getInfo();
+  }, [getInfo, refreshToken]);
   useEffect(() => {
     getInfo();
   }, [getInfo]);
+
+  function handleLogout() {
+    console.log('opa');
+    // setModalExit(false);
+  }
 
   return (
     <Wrap>
@@ -58,15 +66,13 @@ export default function Home({navigation}) {
         show={modalExit}
         setShow={setModalExit}
         titleText="Atenção"
-        infoText="Você deseja sair do App?"
-        twoButtons
-        textErrorButtom="Sim"
-        onAction2={() => {
-          dispatch(signOut());
-          dispatch(signOut());
+        infoText={'Você será deslogado em:'}
+        isLogoutModal
+        completeCountdown={() => handleLogout()}
+        textErrorButtom="Desfazer"
+        onAction={() => {
+          setModalExit(false);
         }}
-        textSucessButtom="Não"
-        onAction={() => setModalExit(false)}
       />
       <RingContainer>
         <RingImg />
@@ -76,7 +82,11 @@ export default function Home({navigation}) {
       <Container>
         <UserImage url={urlPic} />
         <TextBio>{bio}</TextBio>
-        <TextLogout onPress={() => setModalExit(true)}>
+        <TextLogout
+          onPress={() => {
+            setModalExit(true);
+            handleLogout();
+          }}>
           Sair do aca.so
         </TextLogout>
       </Container>

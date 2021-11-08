@@ -7604,6 +7604,11 @@ react-native-actionsheet@^2.4.2:
   resolved "https://registry.yarnpkg.com/react-native-actionsheet/-/react-native-actionsheet-2.4.2.tgz#6a00dd51a75ef2c8974312130e405af73191500f"
   integrity sha512-DBoWIvVwuWXuptF4t46pBqkFxaUxS+rsIdHiA05t0n4BdTIDV2R4s9bLEUVOGzb94D7VxIamsXZPA/3mmw+SXg==
 
+react-native-countdown-circle-timer@^2.5.4:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/react-native-countdown-circle-timer/-/react-native-countdown-circle-timer-2.5.4.tgz#9e6ff6b2ee22e2025fcd9a845d9ee7f48cdb3cec"
+  integrity sha512-wiO+s8EwEMfPt4G16zBWGpIiMwEQQRtSv8shgr7m7QkV69tmKlLrHquesYZjGvLNOQhYRAIZPJSf1ZJNZi1FDA==
+
 react-native-drawer@2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/react-native-drawer/-/react-native-drawer-2.5.1.tgz#08b9314184f48c724f1b467f8859797369798654"

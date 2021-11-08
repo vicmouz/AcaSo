@@ -4,6 +4,7 @@ import {colors} from '~/styles/themes';
 import {responsiveSize} from '~/styles/themes/responsive';
 import IconCustom from '../IconCustom';
 import eye from '~/assets/icons/view.svg';
+import closedEye from '~/assets/icons/closedEye.svg';
 
 export const Wrap = styled.View`
   flex: 1;
@@ -56,20 +57,22 @@ export const TextError = styled.Text`
 
 export const IconButton = styled.TouchableOpacity.attrs({
   activeOpacity: 0.9,
-})``;
+})`
+  margin-right: ${responsiveSize(16)};
+`;
 
 export const IconPass = styled(IconCustom).attrs({
   xml: eye,
-  width: responsiveSize(16),
-  height: responsiveSize(10),
+  width: responsiveSize(21),
+  height: responsiveSize(17),
 })`
-  right: ${responsiveSize(16)}px;
+  /* right: ${responsiveSize(16)}px; */
 `;
 
 export const IconPassDisabled = styled(IconCustom).attrs({
-  xml: eye,
-  width: responsiveSize(16),
-  height: responsiveSize(10),
+  xml: closedEye,
+  width: responsiveSize(21),
+  height: responsiveSize(17),
 })`
-  right: ${responsiveSize(16)}px;
+  /* right: ${responsiveSize(16)}px; */
 `;

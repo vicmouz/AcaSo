@@ -43,7 +43,11 @@ function Input(
           secureTextEntry={iconVisible ? isOpenPassword : false}
         />
         {iconVisible && (
-          <IconButton onPress={() => setOpenPassword(!isOpenPassword)}>
+          <IconButton
+            onPress={() => {
+              console.log(isOpenPassword);
+              setOpenPassword(!isOpenPassword);
+            }}>
             {isOpenPassword ? <IconPassDisabled /> : <IconPass />}
           </IconButton>
         )}

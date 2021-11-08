@@ -1,6 +1,11 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {Modal, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {
+  Modal,
+  TouchableWithoutFeedback,
+  Keyboard,
+  ActivityIndicator,
+} from 'react-native';
 
 import {
   Container,
@@ -15,6 +20,9 @@ import {
   ButtonSucess,
   ViewButtons,
 } from './styles';
+import colors from '~/styles/themes/colors';
+import {CountdownCircleTimer} from 'react-native-countdown-circle-timer';
+import Animated from 'react-native-reanimated';
 
 export default function ModalCustom({
   show,
@@ -28,6 +36,8 @@ export default function ModalCustom({
   twoButtons,
   textErrorButtom,
   textSucessButtom,
+  isLogoutModal,
+  completeCountdown,
 }) {
   return (
     <>
@@ -43,24 +53,28 @@ export default function ModalCustom({
                   <Card>
                     <TextTitle>{titleText}</TextTitle>
                     <TextInfo>{infoText}</TextInfo>
-
+                    {isLogoutModal ? (
+                      <CountdownCircleTimer
+                        isPlaying
+                        size={100}
+                        // onComplete={() => completeCountdown()}
+                        duration={10}
+                        colors={[
+                          ['#004777', 0.4],
+                          ['#F7B801', 0.4],
+                          ['#A30000', 0.2],
+                        ]}>
+                        {/* {({remainingTime, animatedColor}) => (
+                          <Animated.Text style={{color: animatedColor}}>
+                            {remainingTime}
+                          </Animated.Text>
+                        )} */}
+                      </CountdownCircleTimer>
+                    ) : null}
                     <ViewButtons>
-                      {twoButtons ? (
-                        <>
-                          <ButtonError onPress={onAction2}>
-                            <TextButtonClose>{textErrorButtom}</TextButtonClose>
-                          </ButtonError>
-                          <ButtonSucess onPress={onAction}>
-                            <TextButtonClose>
-                              {textSucessButtom}
-                            </TextButtonClose>
-                          </ButtonSucess>
-                        </>
-                      ) : (
-                        <ButtonError onPress={onAction}>
-                          <TextButtonClose>{textErrorButtom}</TextButtonClose>
-                        </ButtonError>
-                      )}
+                      <ButtonError onPress={onAction}>
+                        <TextButtonClose>{textErrorButtom}</TextButtonClose>
+                      </ButtonError>
                     </ViewButtons>
                   </Card>
                 </TouchableWithoutFeedback>
