@@ -15,4 +15,9 @@ export default {
     placeholder: '#FFFFFFCC',
   },
   error: '#E93F78',
+  loading: {
+    primary: '#030446',
+    secondary: '#25045A',
+    tertiary: '#E93F78',
+  },
 };

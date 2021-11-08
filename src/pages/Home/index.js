@@ -24,12 +24,13 @@ export default function Home({navigation}) {
   const dispatch = useDispatch();
   const [bio, setBio] = useState('');
   const [urlPic, setUrlPic] = useState('');
-  const [timeLogout, setTimeLogout] = useState(5);
   const [modalExit, setModalExit] = useState(false);
+  const [modalNewToken, setModalNewToken] = useState(false);
   const [username, setUsername] = useState(' ');
   const {t} = useTranslation('Home');
   const user_id = useSelector(state => state.auth.id);
   const refreshToken = useSelector(state => state.auth.refreshToken);
+  const dateToken = useSelector(state => state.auth.dateToken);
 
   const getInfo = useCallback(async () => {
     try {
@@ -51,13 +52,23 @@ export default function Home({navigation}) {
     api.defaults.headers.Authorization = `Bearer ${data.id_token}`;
     getInfo();
   }, [getInfo, refreshToken]);
+
+  const checkToken = useCallback(async () => {
+    const today = new Date();
+    var timeDiff = Math.abs(dateToken.getTime() - today.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    if (diffDays >= 30) {
+      setModalNewToken(true);
+    }
+  }, [dateToken]);
+
   useEffect(() => {
     getInfo();
   }, [getInfo]);
 
   function handleLogout() {
     console.log('opa');
-    // setModalExit(false);
+    dispatch(signOut());
   }
 
   return (
@@ -74,6 +85,19 @@ export default function Home({navigation}) {
           setModalExit(false);
         }}
       />
+
+      <ModalCustom
+        show={modalExit}
+        setShow={setModalExit}
+        titleText="Atenção"
+        infoText={'Seu token expirou. Por favor, realize o login novamente'}
+        textErrorButtom="Certo"
+        onAction={() => {
+          setModalNewToken(false);
+          handleLogout();
+        }}
+      />
+
       <RingContainer>
         <RingImg />
       </RingContainer>

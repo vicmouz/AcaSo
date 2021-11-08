@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   wrongPass: false,
   id: null,
   refreshToken: null,
+  dateToken: null,
 };
 
 export default function auth(state = INITIAL_STATE, action) {
@@ -20,6 +21,7 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.token = action.payload.token;
         draft.refreshToken = action.payload.refreshToken;
         draft.id = action.payload.id;
+        draft.dateToken = action.payload.dateToken;
         draft.signed = true;
         draft.loading = false;
         break;
