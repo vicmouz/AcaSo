@@ -29,7 +29,6 @@ export const Container = styled.KeyboardAvoidingView.attrs({
   align-items: center;
   padding: 0 38px;
   margin-top: ${responsiveSize(-35)}px;
-  background: ${colors.primary};
 `;
 
 export const Form = styled.View`
@@ -72,7 +71,6 @@ export const ButtonRegister = styled(Button)`
 
 export const Wrap = styled.ScrollView`
   flex: 1;
-  background: ${colors.primary};
 `;
 
 export const BackgroundImg = styled.ImageBackground.attrs({

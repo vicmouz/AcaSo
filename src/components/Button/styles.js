@@ -19,7 +19,7 @@ export const Gradient = styled(LinearGradient)`
   flex: 1;
   height: ${responsiveSize(40)}px;
   width: ${responsiveSize(280)}px;
-  opacity: ${props => (props.isSubmit ? 1 : 0.2)};
+  /* opacity: ${props => (props.isSubmit ? 1 : 0.2)}; */
   border-radius: 20px;
 `;
 
@@ -62,4 +62,5 @@ export const Wrap = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  background: transparent;
 `;

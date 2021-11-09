@@ -20,7 +20,6 @@ export const Container = styled.KeyboardAvoidingView.attrs({
   align-items: center;
   padding: 0 38px;
   margin-top: ${responsiveSize(-35)}px;
-  background: transparent;
 `;
 
 export const Form = styled.View`
@@ -30,9 +29,7 @@ export const FormInput = styled(Input)`
   margin-bottom: ${responsiveSize(20)}px;
 `;
 
-export const SubmitButton = styled(Button)`
-  /* background: ${colors.light}; */
-`;
+export const SubmitButton = styled(Button)``;
 
 export const TextRecover = styled.Text`
   text-decoration: underline;
@@ -61,7 +58,6 @@ export const ButtonRegister = styled(Button)`
 
 export const Wrap = styled.ScrollView`
   flex: 1;
-  background: ${colors.primary};
 `;
 
 export const BackgroundImg = styled.ImageBackground.attrs({

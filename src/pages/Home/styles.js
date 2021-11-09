@@ -6,14 +6,12 @@ import ring from '~/assets/images/anel.svg';
 
 export const Wrap = styled.ScrollView`
   flex: 1;
-  background: ${colors.primary};
 `;
 
 export const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: ${colors.primary};
 `;
 
 export const TextHome = styled.Text`

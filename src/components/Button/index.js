@@ -47,7 +47,7 @@ export default function Button({children, loading, isSubmit, ...rest}) {
             <Gradient
               tart={{x: 0, y: 0}}
               end={{x: 1, y: 0}}
-              colors={['#FFF', '#FFFC']}>
+              colors={['#FFFFFF20', '#FFFFFF20']}>
               <Wrap>
                 <TextButton>{children}</TextButton>
               </Wrap>

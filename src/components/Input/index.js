@@ -12,6 +12,7 @@ import {
   TextError,
   TInput,
   ViewText,
+  WrapInput,
 } from './styles';
 
 function Input(
@@ -34,27 +35,31 @@ function Input(
   return (
     <>
       <Label>{label}</Label>
-      <Container style={style} size={size}>
-        {error || wrongPass ? <ContainerError /> : null}
-        <TInput
-          {...rest}
-          password
-          ref={ref}
-          secureTextEntry={iconVisible ? isOpenPassword : false}
-        />
-        {iconVisible && (
-          <IconButton
-            onPress={() => {
-              console.log(isOpenPassword);
-              setOpenPassword(!isOpenPassword);
-            }}>
-            {isOpenPassword ? <IconPassDisabled /> : <IconPass />}
-          </IconButton>
-        )}
-      </Container>
-      <ViewText>{wrongPass && <TextError>Senha Incorreta</TextError>}</ViewText>
-
-      <ViewText>{error && <TextError>{errorText}</TextError>}</ViewText>
+      <WrapInput>
+        <Container style={style} size={size}>
+          {error || wrongPass ? <ContainerError /> : null}
+          <TInput
+            {...rest}
+            password
+            size={size}
+            ref={ref}
+            secureTextEntry={iconVisible ? isOpenPassword : false}
+          />
+          {iconVisible && (
+            <IconButton
+              onPress={() => {
+                console.log(isOpenPassword);
+                setOpenPassword(!isOpenPassword);
+              }}>
+              {isOpenPassword ? <IconPassDisabled /> : <IconPass />}
+            </IconButton>
+          )}
+        </Container>
+        <ViewText>{error && <TextError>{errorText}</TextError>}</ViewText>
+        <ViewText>
+          {wrongPass && <TextError>* Senha Incorreta</TextError>}
+        </ViewText>
+      </WrapInput>
     </>
   );
 }

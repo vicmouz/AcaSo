@@ -20,4 +20,8 @@ export default {
     secondary: '#25045A',
     tertiary: '#E93F78',
   },
+  gradient: {
+    primary: '#200246',
+    secondary: '#030446',
+  },
 };

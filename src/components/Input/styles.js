@@ -10,6 +10,8 @@ export const Wrap = styled.View`
   flex: 1;
 `;
 
+export const WrapInput = styled.View``;
+
 export const Container = styled.View`
   height: ${props => (props.size ? responsiveSize(38) : responsiveSize(44))};
   background: ${colors.input.background};
@@ -35,7 +37,9 @@ export const TInput = styled.TextInput.attrs({
   color: ${colors.light};
   background: ${colors.input.background};
   border-radius: 10px;
-  padding-left: ${responsiveSize(11)};
+  padding-left: ${props =>
+    props.size ? responsiveSize(2) : responsiveSize(11)};
+  /* padding-top: ${props => (props.size ? responsiveSize(8) : '0')}; */
 `;
 
 export const Label = styled.Text`
@@ -53,6 +57,7 @@ export const TextError = styled.Text`
   color: ${colors.error};
   position: absolute;
   top: ${responsiveSize(-28)};
+  left: ${responsiveSize(13)};
 `;
 
 export const IconButton = styled.TouchableOpacity.attrs({

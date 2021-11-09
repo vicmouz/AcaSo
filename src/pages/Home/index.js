@@ -19,6 +19,7 @@ import {useTranslation} from 'react-i18next';
 import api from '~/services/api';
 import UserImage from './UserImage';
 import ModalCustom from '~/components/ModalCustom';
+import BackgroundContainer from '~/components/BackgroundContainer';
 
 export default function Home({navigation}) {
   const dispatch = useDispatch();
@@ -64,7 +65,8 @@ export default function Home({navigation}) {
 
   useEffect(() => {
     getInfo();
-  }, [getInfo]);
+    checkToken();
+  }, [getInfo, checkToken]);
 
   function handleLogout() {
     console.log('opa');
@@ -72,49 +74,51 @@ export default function Home({navigation}) {
   }
 
   return (
-    <Wrap>
-      <ModalCustom
-        show={modalExit}
-        setShow={setModalExit}
-        titleText="Atenção"
-        infoText={'Você será deslogado em:'}
-        isLogoutModal
-        completeCountdown={() => handleLogout()}
-        textErrorButtom="Desfazer"
-        onAction={() => {
-          setModalExit(false);
-        }}
-      />
+    <BackgroundContainer>
+      <Wrap>
+        <ModalCustom
+          show={modalExit}
+          setShow={setModalExit}
+          titleText="Atenção"
+          infoText={'Você será deslogado em:'}
+          isLogoutModal
+          completeCountdown={() => handleLogout()}
+          textErrorButtom="Desfazer"
+          onAction={() => {
+            setModalExit(false);
+          }}
+        />
 
-      <ModalCustom
-        show={modalExit}
-        setShow={setModalExit}
-        titleText="Atenção"
-        infoText={'Seu token expirou. Por favor, realize o login novamente'}
-        textErrorButtom="Certo"
-        onAction={() => {
-          setModalNewToken(false);
-          handleLogout();
-        }}
-      />
-
-      <RingContainer>
-        <RingImg />
-      </RingContainer>
-      <TextHome>bem vindo,</TextHome>
-      <UserName>{username}</UserName>
-      <Container>
-        <UserImage url={urlPic} />
-        <TextBio>{bio}</TextBio>
-        <TextLogout
-          onPress={() => {
-            setModalExit(true);
+        <ModalCustom
+          show={modalNewToken}
+          setShow={setModalNewToken}
+          titleText="Atenção"
+          infoText={'Seu token expirou. Por favor, realize o login novamente'}
+          textErrorButtom="Certo"
+          onAction={() => {
+            setModalNewToken(false);
             handleLogout();
-          }}>
-          Sair do aca.so
-        </TextLogout>
-      </Container>
-    </Wrap>
+          }}
+        />
+
+        <RingContainer>
+          <RingImg />
+        </RingContainer>
+        <TextHome>bem vindo,</TextHome>
+        <UserName>{username}</UserName>
+        <Container>
+          <UserImage url={urlPic} />
+          <TextBio>{bio}</TextBio>
+          <TextLogout
+            onPress={() => {
+              // setModalExit(true);
+              dispatch(signOut());
+            }}>
+            Sair do aca.so
+          </TextLogout>
+        </Container>
+      </Wrap>
+    </BackgroundContainer>
   );
 }
 

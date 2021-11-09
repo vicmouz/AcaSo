@@ -20,7 +20,11 @@ export function* signIn({payload}) {
 
     yield put(signInSuccess(tokenAccess, refreshToken, user_id, date));
   } catch (error) {
-    if (String(error.response.data.message).includes('incorrect')) {
+    if (
+      String(error.response.data.message)
+        .toLowerCase()
+        .includes('incorrect')
+    ) {
       yield put(wrongPass());
     }
     yield put(signFailure());

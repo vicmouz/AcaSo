@@ -17,6 +17,7 @@ import {
   Wrap,
 } from '../RecoverPassword/styles';
 import {Strong, FormInput, InputCode, LabelCode, Form} from './styles';
+import BackgroundContainer from '~/components/BackgroundContainer';
 
 export default function ConfirmCode({navigation}) {
   const [loading, setLoading] = useState(false);
@@ -52,154 +53,156 @@ export default function ConfirmCode({navigation}) {
     });
   }
   return (
-    <Wrap>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <BackgroundImg source={gas}>
-          <Container>
-            <RingContainer>
-              <RingImg />
-            </RingContainer>
-            <LogoImg />
-            <TitlePage>RECUPERAR SENHA</TitlePage>
-            <TextInfo>
-              Um código de verificação foi enviado para <Strong>{email}</Strong>
-              , insira nos campos abaixo:
-            </TextInfo>
-            <Form>
-              <LabelCode>Código de Verificação</LabelCode>
-              <InputCode>
-                <FormInput
-                  value={number1}
-                  keyboardType="phone-pad"
-                  returnKeyType="next"
-                  onChangeText={textValue => {
-                    setNumber1(textValue);
-                    if (textValue !== '') {
-                      number2Ref.current.focus();
-                    }
-                  }}
-                  onSubmitEditing={() => number2Ref.current.focus()}
-                  ref={number1Ref}
-                  blurOnSubmit={false}
-                  size={42}
-                  maxLength={1}
-                />
-                <FormInput
-                  value={number2}
-                  keyboardType="phone-pad"
-                  returnKeyType="next"
-                  onChangeText={textValue => {
-                    setNumber2(textValue);
-                    if (textValue !== '') {
-                      number3Ref.current.focus();
-                    }
-                  }}
-                  onKeyPress={({nativeEvent}) => {
-                    if (nativeEvent.key === 'Backspace') {
-                      number1Ref.current.focus();
-                    }
-                  }}
-                  onSubmitEditing={() => number3Ref.current.focus()}
-                  ref={number2Ref}
-                  blurOnSubmit={false}
-                  size={42}
-                  maxLength={1}
-                />
-                <FormInput
-                  value={number3}
-                  keyboardType="phone-pad"
-                  returnKeyType="next"
-                  onChangeText={textValue => {
-                    setNumber3(textValue);
-                    if (textValue !== '') {
-                      number4Ref.current.focus();
-                    }
-                  }}
-                  onKeyPress={({nativeEvent}) => {
-                    if (nativeEvent.key === 'Backspace') {
-                      number2Ref.current.focus();
-                    }
-                  }}
-                  onSubmitEditing={() => number4Ref.current.focus()}
-                  ref={number3Ref}
-                  blurOnSubmit={false}
-                  size={42}
-                  maxLength={1}
-                />
-                <FormInput
-                  value={number4}
-                  keyboardType="phone-pad"
-                  returnKeyType="next"
-                  onChangeText={textValue => {
-                    setNumber4(textValue);
-                    if (textValue !== '') {
-                      number5Ref.current.focus();
-                    }
-                  }}
-                  onKeyPress={({nativeEvent}) => {
-                    if (nativeEvent.key === 'Backspace') {
-                      number3Ref.current.focus();
-                    }
-                  }}
-                  onSubmitEditing={() => number5Ref.current.focus()}
-                  ref={number4Ref}
-                  blurOnSubmit={false}
-                  size={42}
-                  maxLength={1}
-                />
-                <FormInput
-                  value={number5}
-                  keyboardType="phone-pad"
-                  returnKeyType="next"
-                  onChangeText={textValue => {
-                    setNumber5(textValue);
-                    if (textValue !== '') {
-                      number6Ref.current.focus();
-                    }
-                  }}
-                  onKeyPress={({nativeEvent}) => {
-                    if (nativeEvent.key === 'Backspace') {
-                      number4Ref.current.focus();
-                    }
-                  }}
-                  onSubmitEditing={() => number6Ref.current.focus()}
-                  ref={number5Ref}
-                  blurOnSubmit={false}
-                  size={42}
-                  maxLength={1}
-                />
-                <FormInput
-                  value={number6}
-                  keyboardType="phone-pad"
-                  returnKeyType="next"
-                  onChangeText={textValue => {
-                    setNumber6(textValue);
-                    if (textValue !== '') {
-                      number6Ref.current.focus();
-                    }
-                  }}
-                  onKeyPress={({nativeEvent}) => {
-                    if (nativeEvent.key === 'Backspace') {
-                      number5Ref.current.focus();
-                    }
-                  }}
-                  onSubmitEditing={() => handleSubmit()}
-                  ref={number6Ref}
-                  blurOnSubmit={false}
-                  size={42}
-                  maxLength={1}
-                />
-              </InputCode>
-            </Form>
-            <SubmitButton loading={loading} onPress={handleSubmit} isSubmit>
-              Confirmar código
-            </SubmitButton>
-            <ButtonRegister onPress={() => navigation.navigate('Sign')}>
-              Voltar ao login
-            </ButtonRegister>
-          </Container>
-        </BackgroundImg>
-      </TouchableWithoutFeedback>
-    </Wrap>
+    <BackgroundContainer>
+      <Wrap>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <BackgroundImg source={gas}>
+            <Container>
+              <RingContainer>
+                <RingImg />
+              </RingContainer>
+              <LogoImg />
+              <TitlePage>RECUPERAR SENHA</TitlePage>
+              <TextInfo>
+                Um código de verificação foi enviado para{' '}
+                <Strong>{email}</Strong>, insira nos campos abaixo:
+              </TextInfo>
+              <Form>
+                <LabelCode>Código de Verificação</LabelCode>
+                <InputCode>
+                  <FormInput
+                    value={number1}
+                    keyboardType="phone-pad"
+                    returnKeyType="next"
+                    onChangeText={textValue => {
+                      setNumber1(textValue);
+                      if (textValue !== '') {
+                        number2Ref.current.focus();
+                      }
+                    }}
+                    onSubmitEditing={() => number2Ref.current.focus()}
+                    ref={number1Ref}
+                    blurOnSubmit={false}
+                    size={42}
+                    maxLength={1}
+                  />
+                  <FormInput
+                    value={number2}
+                    keyboardType="phone-pad"
+                    returnKeyType="next"
+                    onChangeText={textValue => {
+                      setNumber2(textValue);
+                      if (textValue !== '') {
+                        number3Ref.current.focus();
+                      }
+                    }}
+                    onKeyPress={({nativeEvent}) => {
+                      if (nativeEvent.key === 'Backspace') {
+                        number1Ref.current.focus();
+                      }
+                    }}
+                    onSubmitEditing={() => number3Ref.current.focus()}
+                    ref={number2Ref}
+                    blurOnSubmit={false}
+                    size={42}
+                    maxLength={1}
+                  />
+                  <FormInput
+                    value={number3}
+                    keyboardType="phone-pad"
+                    returnKeyType="next"
+                    onChangeText={textValue => {
+                      setNumber3(textValue);
+                      if (textValue !== '') {
+                        number4Ref.current.focus();
+                      }
+                    }}
+                    onKeyPress={({nativeEvent}) => {
+                      if (nativeEvent.key === 'Backspace') {
+                        number2Ref.current.focus();
+                      }
+                    }}
+                    onSubmitEditing={() => number4Ref.current.focus()}
+                    ref={number3Ref}
+                    blurOnSubmit={false}
+                    size={42}
+                    maxLength={1}
+                  />
+                  <FormInput
+                    value={number4}
+                    keyboardType="phone-pad"
+                    returnKeyType="next"
+                    onChangeText={textValue => {
+                      setNumber4(textValue);
+                      if (textValue !== '') {
+                        number5Ref.current.focus();
+                      }
+                    }}
+                    onKeyPress={({nativeEvent}) => {
+                      if (nativeEvent.key === 'Backspace') {
+                        number3Ref.current.focus();
+                      }
+                    }}
+                    onSubmitEditing={() => number5Ref.current.focus()}
+                    ref={number4Ref}
+                    blurOnSubmit={false}
+                    size={42}
+                    maxLength={1}
+                  />
+                  <FormInput
+                    value={number5}
+                    keyboardType="phone-pad"
+                    returnKeyType="next"
+                    onChangeText={textValue => {
+                      setNumber5(textValue);
+                      if (textValue !== '') {
+                        number6Ref.current.focus();
+                      }
+                    }}
+                    onKeyPress={({nativeEvent}) => {
+                      if (nativeEvent.key === 'Backspace') {
+                        number4Ref.current.focus();
+                      }
+                    }}
+                    onSubmitEditing={() => number6Ref.current.focus()}
+                    ref={number5Ref}
+                    blurOnSubmit={false}
+                    size={42}
+                    maxLength={1}
+                  />
+                  <FormInput
+                    value={number6}
+                    keyboardType="phone-pad"
+                    returnKeyType="next"
+                    onChangeText={textValue => {
+                      setNumber6(textValue);
+                      if (textValue !== '') {
+                        number6Ref.current.focus();
+                      }
+                    }}
+                    onKeyPress={({nativeEvent}) => {
+                      if (nativeEvent.key === 'Backspace') {
+                        number5Ref.current.focus();
+                      }
+                    }}
+                    onSubmitEditing={() => handleSubmit()}
+                    ref={number6Ref}
+                    blurOnSubmit={false}
+                    size={42}
+                    maxLength={1}
+                  />
+                </InputCode>
+              </Form>
+              <SubmitButton loading={loading} onPress={handleSubmit} isSubmit>
+                Confirmar código
+              </SubmitButton>
+              <ButtonRegister onPress={() => navigation.navigate('Sign')}>
+                Voltar ao login
+              </ButtonRegister>
+            </Container>
+          </BackgroundImg>
+        </TouchableWithoutFeedback>
+      </Wrap>
+    </BackgroundContainer>
   );
 }
