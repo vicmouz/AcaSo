@@ -27,6 +27,7 @@ export default function Home({navigation}) {
   const [urlPic, setUrlPic] = useState('');
   const [modalExit, setModalExit] = useState(false);
   const [modalNewToken, setModalNewToken] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState(' ');
   const {t} = useTranslation('Home');
   const user_id = useSelector(state => state.auth.id);
@@ -35,11 +36,14 @@ export default function Home({navigation}) {
 
   const getInfo = useCallback(async () => {
     try {
+      setLoading(true);
       const {data} = await api.get(`/user/${user_id}`);
+      setLoading(false);
       setUrlPic(data.profile_picture);
       setUsername(data.first_name + ' ' + data.last_name);
       setBio(data.bio);
     } catch (error) {
+      setLoading(false);
       if (error.response.status === 403) {
         refresh();
       }
@@ -69,7 +73,7 @@ export default function Home({navigation}) {
   }, [getInfo, checkToken]);
 
   function handleLogout() {
-    console.log('opa');
+    setModalExit(false);
     dispatch(signOut());
   }
 
@@ -107,12 +111,12 @@ export default function Home({navigation}) {
         <TextHome>bem vindo,</TextHome>
         <UserName>{username}</UserName>
         <Container>
-          <UserImage url={urlPic} />
+          <UserImage url={urlPic} loading={loading} />
           <TextBio>{bio}</TextBio>
           <TextLogout
             onPress={() => {
-              // setModalExit(true);
-              dispatch(signOut());
+              setModalExit(true);
+              // dispatch(signOut());
             }}>
             Sair do aca.so
           </TextLogout>

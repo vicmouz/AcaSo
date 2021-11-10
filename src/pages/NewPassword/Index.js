@@ -7,6 +7,7 @@ import gas from '~/assets/images/gas.png';
 
 import {
   BackgroundImg,
+  ButtonRegister,
   Container,
   Form,
   FormInput,
@@ -55,9 +56,9 @@ export default function NewPassword({navigation}) {
           proposed_password: values.confirmPassword,
         });
         setLoading(false);
+        navigation.navigate('Sign');
       } catch (error) {
         setLoading(false);
-        console.log(error.response.data.message);
         if (String(error.response.data.message).includes('confirmation')) {
           setModalConfirmationError(true);
           setTitleError('Código inválido');
@@ -145,6 +146,9 @@ export default function NewPassword({navigation}) {
                 isSubmit>
                 Confirmar
               </SubmitButton>
+              <ButtonRegister onPress={() => navigation.navigate('Sign')}>
+                Voltar ao login
+              </ButtonRegister>
             </Container>
           </BackgroundImg>
         </TouchableWithoutFeedback>

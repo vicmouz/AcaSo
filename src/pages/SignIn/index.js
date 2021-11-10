@@ -34,11 +34,8 @@ export default function SignIn({navigation}) {
     validationSchema: formValidator,
     onSubmit: async values => {
       try {
-        const response = dispatch(signInRequest(values.email, values.password));
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
+        dispatch(signInRequest(values.email, values.password));
+      } catch (error) {}
     },
   });
 
@@ -91,7 +88,7 @@ export default function SignIn({navigation}) {
                   errors={formik.errors.password}
                   error={!!formik.errors.password && formik.touched.password}
                   errorText={formik.errors.password}
-                  wrongPass={wrongPass}
+                  wrongPass={formik.values.password !== '' ? false : wrongPass}
                 />
               </Form>
               <TextRecover onPress={() => handleNavigate('RecoverPassword')}>

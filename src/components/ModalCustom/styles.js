@@ -80,3 +80,8 @@ export const TextButtonClose = styled.Text`
   font: normal normal bold ${responsiveSize(16)}px Raleway;
   color: ${colors.light};
 `;
+
+export const TimeRemaining = styled.Text`
+  font: normal normal bold ${responsiveSize(21)}px Raleway;
+  color: ${props => (props.color ? colors.primary : colors.gradient.secondary)};
+`;
